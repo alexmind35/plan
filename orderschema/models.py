@@ -21,7 +21,7 @@ class Servicemod(models.Model):
 
 class Usermod(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    mobile_phone = models.CharField("Телефон +7", unique=True, max_length=12, default='Мобильник')
+    mobile_phone = models.CharField("Телефон +7", unique=True, max_length=12, default='')
     name_org = models.CharField("Название организации", max_length=255)
     address_org = models.CharField("Адрес организации", max_length=255)
 
@@ -37,7 +37,7 @@ class Usermod(models.Model):
 class Ordermod(models.Model):
     servicemod = models.ForeignKey(Servicemod, on_delete=models.CASCADE, null=True)
     usermod = models.ForeignKey(Usermod, on_delete=models.CASCADE, null=True)
-    date_order = models.DateField("Дата заказа", blank=True, null=True)
+    date_order = models.DateField("Дата заказа", blank=True, null=True, auto_now_add=True)
     executed_order = models.BooleanField("Выполнен: да/нет", default=True)
 
     class Meta:
